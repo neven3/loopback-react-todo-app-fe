@@ -1,8 +1,14 @@
 import React from 'react';
+import { Navbar } from '.';
 
 function Main(props) {
     return (
-        <h1>Main</h1>
+        <div>
+            <Navbar />
+            <div className="container">
+                <h1>Main</h1>
+            </div>
+        </div>
     );
 }
 
