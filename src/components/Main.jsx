@@ -1,15 +1,22 @@
-import React from 'react';
-import { Navbar } from '.';
+import React, { useState } from 'react';
+import { todosService }
+// import { useHistory } from 'react-router-dom';
 
 function Main(props) {
-    return (
-        <div>
-            <Navbar />
-            <div className="container">
+        // const nesto = useHistory();
+        // debugger
+
+        const [todos, setTodos] = useState([]);
+
+        return (
+            <div>
                 <h1>Main</h1>
             </div>
-        </div>
-    );
+        );
+    }
+
+async function getTodos(userId) {
+
 }
 
 export default Main;

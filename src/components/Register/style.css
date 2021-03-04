@@ -11,25 +11,6 @@
     padding: 30px 40px;
 }
 
-.sign-up {
-    margin-top: 1rem;
-    padding: 1rem;
-    text-align: center;
-}
-
-a.link {
-    transition: 0.5s;
-    padding: 1rem;
-    color: #3498db;
-    border-radius: 1rem;
-    text-decoration: none;
-}
-
-a.link:hover {
-    transition: 0.5s linear;
-    background-color: gold;
-}
-
 h2 {
     text-align: center;
     margin: 0 0 20px;
@@ -42,7 +23,6 @@ h2 {
 }
 
 .form-control label {
-    /* color: #777; */
     color: #3498db;
     display: block;
     margin-bottom: 5px;

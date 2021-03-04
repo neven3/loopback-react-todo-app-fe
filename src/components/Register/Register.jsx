@@ -1,17 +1,16 @@
 import React, { useState } from 'react';
-import { Link, Redirect } from 'react-router-dom';
+import { Redirect } from 'react-router-dom';
 
-import { loginService, getUser } from '../../services';
+import { registerService, loginService } from '../../services';
 import './style.css';
 
-function Login(props) {
+function Register(props) {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
+    const [username, setUsername] = useState('');
     const [routeTo, setRouteTo] = useState('');
 
-    if (routeTo === 'register') {
-        return <Redirect to={`/register`} />
-    } else if (routeTo?.userId) {
+    if (routeTo?.userId) {
         return <Redirect to={`/main/${routeTo.userId}`} />
     }
 
@@ -19,7 +18,18 @@ function Login(props) {
         <React.Fragment>
             <div className="container">
                 <form className="form">
-                    <h2>Login</h2>
+                    <h2>Register</h2>
+                    <div className="form-control">
+                        <label htmlFor="email">Username</label>
+                        <input
+                            type="text"
+                            placeholder="Username"
+                            className="credentials"
+                            id="username"
+                            value={username}
+                            onChange={(e) => setUsername(e.target.value)}
+                        />
+                    </div>
                     <div className="form-control">
                         <label htmlFor="email">Email</label>
                         <input
@@ -46,29 +56,42 @@ function Login(props) {
                         type="submit"
                         onClick={(e) => {
                             e.preventDefault();
-                            handleLogin(email, password, setRouteTo);
+                            handleRegister(username, email, password, setRouteTo);
                         }}
                     >
-                        Login
+                        Register
                     </button>
-                    <p className="sign-up">
-                        Don't have an account? <Link to="/register" className="link">Sign up.</Link>
-                    </p>
                 </form>
             </div>
         </React.Fragment>
     );
 }
 
-async function handleLogin(email, password, setRouteTo) {
+async function handleRegister(username, email, password, setRouteTo) {
+    // TODO reject registering users with usernames and/or emails that already exist
+    try {
+        const response = await registerService(username, email, password);
+
+        if (response?.error?.statusCode >= 400) throw new Error(JSON.stringify(response.error));
+
+        const userId = response.id;
+
+        loginUser(email, password, userId, setRouteTo);
+    } catch (err) {
+        // TODO handle login errors
+        const error = JSON.parse(err.message);
+        console.log({ error })
+        debugger
+    }
+}
+
+async function loginUser(email, password, userId, setRouteTo) {
     try {
         const response = await loginService(email, password);
 
         if (response?.error?.statusCode >= 400) throw new Error(JSON.stringify(response.error));
 
         localStorage.setItem('userToken', `Bearer ${response.token}`);
-
-        const userId = await getUserId();
 
         setRouteTo({ userId });
     } catch (err) {
@@ -79,16 +102,4 @@ async function handleLogin(email, password, setRouteTo) {
     }
 }
 
-async function getUserId() {
-    try {
-        const userId = await getUser();
-
-        return userId;
-    } catch (err) {
-        // TODO handle not fetching
-        console.log({ err });
-        debugger
-    }
-}
-
-export default Login;
+export default Register;
