@@ -15,7 +15,7 @@ function Register(props) {
     }
 
     return (
-        <React.Fragment>
+        <div className="content">
             <div className="container">
                 <form className="form">
                     <h2>Register</h2>
@@ -28,6 +28,7 @@ function Register(props) {
                             id="username"
                             value={username}
                             onChange={(e) => setUsername(e.target.value)}
+                            required
                         />
                     </div>
                     <div className="form-control">
@@ -39,6 +40,7 @@ function Register(props) {
                             id="email"
                             value={email}
                             onChange={(e) => setEmail(e.target.value)}
+                            required
                         />
                     </div>
                     <div className="form-control">
@@ -50,6 +52,7 @@ function Register(props) {
                             className="credentials"
                             value={password}
                             onChange={(e) => setPassword(e.target.value)}
+                            required
                         />
                     </div>
                     <button
@@ -63,7 +66,7 @@ function Register(props) {
                     </button>
                 </form>
             </div>
-        </React.Fragment>
+        </div>
     );
 }
 
@@ -80,8 +83,7 @@ async function handleRegister(username, email, password, setRouteTo) {
     } catch (err) {
         // TODO handle login errors
         const error = JSON.parse(err.message);
-        console.log({ error })
-        debugger
+        alert(error);
     }
 }
 
@@ -97,8 +99,7 @@ async function loginUser(email, password, userId, setRouteTo) {
     } catch (err) {
         // TODO handle login errors
         const error = JSON.parse(err.message);
-        console.log({ error })
-        debugger
+        alert(error);
     }
 }
 

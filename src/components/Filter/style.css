@@ -7,27 +7,24 @@
     margin: auto;
 }
 
-.form {
-    padding: 30px 40px;
+.search {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 10px 40px;
+    /* border: 3px solid #3498db; */
+    border-radius: 10px;
+    max-width: 90%;
 }
 
-.sign-up {
-    margin-top: 1rem;
-    padding: 1rem;
-    text-align: center;
-}
-
-a.link {
-    transition: 0.5s;
-    padding: 1rem;
-    color: #3498db;
-    border-radius: 1rem;
-    text-decoration: none;
-}
-
-a.link:hover {
-    transition: 0.5s linear;
-    background-color: gold;
+select {
+    /* margin: 1rem auto; */
+    width: 100%;
+    border: 2px solid #f0f0f0;
+    border-radius: 4px;
+    display: block;
+    padding: 10px;
+    font-size: 14px;
 }
 
 h2 {
@@ -35,33 +32,35 @@ h2 {
     margin: 0 0 20px;
 }
 
-.form-control {
+.form-control-search {
     margin-bottom: 10px;
-    padding-bottom: 20px;
+    width: 300px;
+    max-width: 90%;
     position: relative;
 }
 
-.form-control label {
+.form-control-search label {
     color: #3498db;
     display: block;
     margin-bottom: 5px;
 }
 
-.form-control input {
+.form-control-search input {
     border: 2px solid #f0f0f0;
     border-radius: 4px;
     display: block;
     width: 100%;
     padding: 10px;
     font-size: 14px;
+    margin-bottom: 1rem;
 }
 
-.form-control input:focus {
+.form-control-search input:focus {
     outline: 0;
     border-color: #777;
 }
 
-.form button {
+/* .search button {
     background-color: #3498db;
     border: 2px solid #3498db;
     cursor: pointer;
@@ -70,4 +69,4 @@ h2 {
     display: block;
     font-size: 16px;
     padding: 10px;
-}
+} */

@@ -16,7 +16,7 @@ function Login(props) {
     }
 
     return (
-        <React.Fragment>
+        <div className="content">
             <div className="container">
                 <form className="form">
                     <h2>Login</h2>
@@ -29,6 +29,7 @@ function Login(props) {
                             id="email"
                             value={email}
                             onChange={(e) => setEmail(e.target.value)}
+                            required
                         />
                     </div>
                     <div className="form-control">
@@ -40,6 +41,7 @@ function Login(props) {
                             className="credentials"
                             value={password}
                             onChange={(e) => setPassword(e.target.value)}
+                            required
                         />
                     </div>
                     <button
@@ -56,7 +58,7 @@ function Login(props) {
                     </p>
                 </form>
             </div>
-        </React.Fragment>
+        </div>
     );
 }
 
@@ -74,8 +76,7 @@ async function handleLogin(email, password, setRouteTo) {
     } catch (err) {
         // TODO handle login errors
         const error = JSON.parse(err.message);
-        console.log({ error })
-        debugger
+        alert(error);
     }
 }
 
@@ -86,8 +87,8 @@ async function getUserId() {
         return userId;
     } catch (err) {
         // TODO handle not fetching
-        console.log({ err });
-        debugger
+        const error = JSON.parse(err.message);
+        alert(error);
     }
 }
 

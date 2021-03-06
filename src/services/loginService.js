@@ -12,6 +12,8 @@ async function login(email, password) {
         body: JSON.stringify({ email, password })
     });
 
+    if (response?.error?.statusCode >= 400) throw new Error(JSON.stringify(response.error));
+
     const token = await response.json();
 
     return token;
